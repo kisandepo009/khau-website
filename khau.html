@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khau Nepali Momos — Authentic Himalayan Flavours, Indore</title>
+<link rel="icon" type="image/png" href="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103613.png?raw=true">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE5D0;
+    --red: #C0392B;
+    --red-deep: #96281B;
+    --red-light: #E74C3C;
+    --gold: #C9913A;
+    --gold-light: #E2B96F;
+    --dark: #1A1208;
+    --dark-mid: #2D2010;
+    --charcoal: #3D3020;
+    --text-muted: #7A6545;
+    --white: #FDFAF5;
+    --border: rgba(201,145,58,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── CURSOR ── */
+  .cursor-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--gold-light);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+    opacity: 0.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(26,18,8,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 3rem;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red-light); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    opacity: 0.8;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold-light); }
+  .nav-cta {
+    background: var(--red);
+    color: white !important;
+    opacity: 1 !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--red-deep) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(192,57,43,0.18) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,145,58,0.12) 0%, transparent 60%),
+      linear-gradient(160deg, #0D0B06 0%, #1A1208 40%, #221508 100%);
+    z-index: 0;
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(201,145,58,0.015) 2px, rgba(201,145,58,0.015) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,145,58,0.012) 60px, rgba(201,145,58,0.012) 61px);
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '—';
+    margin: 0 0.75rem;
+    opacity: 0.5;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+  h1 .accent { color: var(--red-light); }
+
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--cream-dark);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+    margin-top: 1.8rem;
+    letter-spacing: 0.03em;
+    max-width: 520px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap;
+    margin-top: 2.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: white;
+    padding: 0.9rem 2.2rem;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--red-deep); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--cream);
+    padding: 0.9rem 2.2rem;
+    border: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;
+    margin-top: 4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.1s forwards;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-ind {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+    z-index: 2;
+  }
+  .scroll-ind span {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.1rem 0;
+    background: rgba(201,145,58,0.04);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    padding: 0 2rem;
+  }
+  .marquee-dot { color: var(--red) !important; font-style: normal !important; }
+
+  /* ── GALLERY / IMAGES ── */
+  #gallery { background: var(--dark-mid); padding: 6rem 0 0; }
+  .gallery-intro { padding: 0 2rem 4rem; }
+  .gallery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 6px 6px;
+  }
+  .gallery-row {
+    display: flex;
+    gap: 6px;
+  }
+  .gallery-img {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+  .gallery-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: filter 0.5s ease;
+    filter: brightness(0.92) saturate(1.05);
+  }
+  .gallery-img:hover img { filter: brightness(1) saturate(1.15); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,18,8,0.35) 0%, transparent 50%);
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .gallery-img:hover .gallery-overlay { opacity: 0.4; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--dark); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-main {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.88) saturate(1.1);
+  }
+  .about-img-accent {
+    width: 55%;
+    height: auto;
+    display: block;
+    margin-top: 6px;
+    margin-left: auto;
+    border: 3px solid var(--dark);
+    filter: brightness(0.9) saturate(1.1);
+  }
+  .about-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 90px; height: 90px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--dark);
+    z-index: 2;
+  }
+  .about-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1;
+  }
+  .about-badge-text {
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.75);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+  .about-highlights {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .highlight-item { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .highlight-icon {
+    width: 36px; height: 36px;
+    background: rgba(192,57,43,0.15);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+  .highlight-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+  .highlight-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+
+  /* ── MENU ── */
+  #menu { background: var(--dark-mid); }
+  .menu-tabs {
+    display: flex; gap: 0;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 1.8rem;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--red);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+  .tab-btn.active { color: var(--gold-light); }
+  .tab-btn.active::after { transform: scaleX(1); }
+  .tab-btn:hover { color: var(--cream); }
+
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+  }
+  .menu-item {
+    background: var(--dark);
+    padding: 1.6rem 1.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .menu-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--red);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+  }
+  .menu-item:hover { background: rgba(201,145,58,0.04); }
+  .menu-item:hover::before { transform: scaleY(1); }
+
+  .menu-item-info { flex: 1; }
+  .menu-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.35rem;
+  }
+  .menu-item-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .menu-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    margin-right: 0.3rem;
+  }
+  .tag-veg { background: rgba(39,174,96,0.15); color: #6fcf97; border: 1px solid rgba(39,174,96,0.3); }
+  .tag-spicy { background: rgba(192,57,43,0.15); color: #e87461; border: 1px solid rgba(192,57,43,0.3); }
+  .tag-bestseller { background: rgba(201,145,58,0.15); color: var(--gold-light); border: 1px solid rgba(201,145,58,0.3); }
+
+  .menu-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    white-space: nowrap;
+  }
+
+  /* ── EXPERIENCE STRIP ── */
+  #experience {
+    background: var(--red-deep);
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #experience::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 60px solid rgba(255,255,255,0.04);
+  }
+  #experience::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    border: 70px solid rgba(255,255,255,0.04);
+  }
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .exp-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.95);
+    line-height: 1;
+  }
+  .exp-unit {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .exp-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.5rem;
+  }
+
+  /* ── REVIEWS ── */
+  #reviews { background: var(--dark); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    margin-top: 3.5rem;
+  }
+  .review-card {
+    background: var(--dark);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+  .review-card:hover { background: rgba(201,145,58,0.04); }
+  .review-stars {
+    display: flex; gap: 3px;
+    margin-bottom: 1rem;
+    color: var(--gold);
+    font-size: 0.9rem;
+  }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--cream-dark);
+    margin-bottom: 1.5rem;
+  }
+  .review-author {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .review-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--gold-light);
+  }
+  .review-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--cream);
+  }
+  .review-date {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+  .review-platform {
+    margin-left: auto;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  /* ── LOCATION ── */
+  #location { background: var(--dark-mid); }
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+  .location-info-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .location-info-item:last-child { border-bottom: none; }
+  .loc-icon {
+    width: 42px; height: 42px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+  .loc-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .loc-text {
+    font-size: 0.9rem;
+    color: var(--cream-dark);
+    line-height: 1.65;
+  }
+  .loc-text a { color: var(--gold-light); text-decoration: none; }
+  .loc-text a:hover { text-decoration: underline; }
+
+  .map-embed {
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .map-embed iframe {
+    width: 100%; height: 380px;
+    border: none;
+    filter: sepia(0.3) contrast(1.1);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0A0804;
+    padding: 4rem 2rem 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .footer-tagline {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .footer-links-group h4 {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .footer-links-group ul { list-style: none; }
+  .footer-links-group ul li { margin-bottom: 0.6rem; }
+  .footer-links-group ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .footer-links-group ul li a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+  .footer-social {
+    display: flex; gap: 1rem;
+  }
+  .social-link {
+    width: 34px; height: 34px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ── PHOTO SECTION - additional ── */
+  .photos-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 4rem;
+  }
+  .photo-strip-item {
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-strip-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: filter 0.5s ease;
+    filter: brightness(0.88);
+  }
+  .photo-strip-item:hover img { filter: brightness(1); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.7; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav.scrolled { padding: 0.75rem 1.5rem; }
+    .nav-links { display: none; }
+    .gallery-row { flex-direction: column; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-img-accent { width: 70%; }
+    .location-grid { grid-template-columns: 1fr; }
+    .footer-top { flex-direction: column; }
+    .photos-strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Khau Nepali Momos</a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location" class="nav-cta">Visit Us</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Authentic Himalayan · Bengali Square, Indore</span>
+    <h1>The <em>Soul</em> of<br>Nepal, in Every<br><span class="accent">Momo</span></h1>
+    <p class="hero-sub">Hand-folded, slow-steamed, and served with fire. Khau brings the mountains of Nepal to the heart of Indore — one perfect momo at a time.</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn-primary">Explore Our Menu</a>
+      <a href="#location" class="btn-outline">Find Us</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">4.5★</div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Momo Varieties</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Authentic Nepali</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Steamed Momos</span><span class="marquee-dot">✦</span>
+    <span>Fried Momos</span><span class="marquee-dot">✦</span>
+    <span>Jhol Momos</span><span class="marquee-dot">✦</span>
+    <span>Tandoori Momos</span><span class="marquee-dot">✦</span>
+    <span>Chilli Momos</span><span class="marquee-dot">✦</span>
+    <span>Buff Momos</span><span class="marquee-dot">✦</span>
+    <span>Paneer Momos</span><span class="marquee-dot">✦</span>
+    <span>Chicken Momos</span><span class="marquee-dot">✦</span>
+    <span>Cheese Momos</span><span class="marquee-dot">✦</span>
+    <span>Chocolate Momos</span><span class="marquee-dot">✦</span>
+    <span>Steamed Momos</span><span class="marquee-dot">✦</span>
+    <span>Fried Momos</span><span class="marquee-dot">✦</span>
+    <span>Jhol Momos</span><span class="marquee-dot">✦</span>
+    <span>Tandoori Momos</span><span class="marquee-dot">✦</span>
+    <span>Chilli Momos</span><span class="marquee-dot">✦</span>
+    <span>Buff Momos</span><span class="marquee-dot">✦</span>
+    <span>Paneer Momos</span><span class="marquee-dot">✦</span>
+    <span>Chicken Momos</span><span class="marquee-dot">✦</span>
+    <span>Cheese Momos</span><span class="marquee-dot">✦</span>
+    <span>Chocolate Momos</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<section id="gallery">
+  <div class="gallery-intro container">
+    <div class="reveal">
+      <span class="section-label">From Our Kitchen</span>
+      <h2 class="section-title">A Feast for the <em>Eyes</em><br>Before the Mouth</h2>
+    </div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103551.png?raw=true" alt="Khau Nepali Momos - Signature dish">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-img">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103613.png?raw=true" alt="Khau restaurant ambiance">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-img">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103627.png?raw=true" alt="Fresh momos being prepared">
+        <div class="gallery-overlay"></div>
+      </div>
+    </div>
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103652.png?raw=true" alt="Khau Nepali Momos interior">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-img">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103704.png?raw=true" alt="Khau kitchen and momos">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-img">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103713.png?raw=true" alt="Authentic Nepali momos platter">
+        <div class="gallery-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img class="about-img-main" src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103704.png?raw=true" alt="Khau kitchen and momos">
+        <img class="about-img-accent" src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103713.png?raw=true" alt="Authentic Nepali momos platter">
+        <div class="about-badge">
+          <span class="about-badge-num">★4.5</span>
+          <span class="about-badge-text">Google<br>Rated</span>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Born in the<br><em>Himalayas,</em><br>Served in Indore</h2>
+        <p style="margin-top: 1.5rem;">Khau Nepali Momos was born from a simple, irresistible idea — to bring the soulful, authentic taste of Nepal to the streets of Indore. Every momo we make is a tribute to the rich culinary heritage of the Himalayas.</p>
+        <p>Nestled in Bengali Square, we've built a home where every guest is family. Our dough is hand-kneaded fresh every morning. Our fillings are crafted from recipes passed down through generations. And our chutneys? Fiery, tangy, and utterly addictive.</p>
+        <p>Whether you're here for a quick bite or a long evening with friends, Khau promises the same thing every time — warmth, flavour, and momos that make you come back for more.</p>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">🏔️</div>
+            <div>
+              <div class="highlight-title">Himalayan Recipes</div>
+              <div class="highlight-desc">Authentic techniques, traditional spices</div>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🥟</div>
+            <div>
+              <div class="highlight-title">Hand-Folded Daily</div>
+              <div class="highlight-desc">Made fresh every single day</div>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🌶️</div>
+            <div>
+              <div class="highlight-title">Signature Chutneys</div>
+              <div class="highlight-desc">House-made, fiery & unforgettable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">What We Serve</span>
+      <h2 class="section-title">The <em>Menu</em></h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem; font-weight: 300;">Every momo tells a story. Pick yours.</p>
+    </div>
+    <div class="menu-tabs" style="margin-top: 2.5rem;">
+      <button class="tab-btn active" onclick="switchTab('steamed')">Steamed</button>
+      <button class="tab-btn" onclick="switchTab('fried')">Fried & Chilli</button>
+      <button class="tab-btn" onclick="switchTab('jhol')">Jhol & Tandoori</button>
+      <button class="tab-btn" onclick="switchTab('special')">Specials</button>
+    </div>
+
+    <div class="menu-panel active" id="panel-steamed">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Classic Chicken Momo</div>
+            <div class="menu-item-desc">Juicy minced chicken with ginger, garlic & Himalayan herbs, steamed to perfection</div>
+            <span class="menu-tag tag-bestseller">Bestseller</span>
+          </div>
+          <div class="menu-item-price">₹80</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Veg Steamed Momo</div>
+            <div class="menu-item-desc">Mixed veggies, paneer & spices wrapped in silky dough</div>
+            <span class="menu-tag tag-veg">Veg</span>
+          </div>
+          <div class="menu-item-price">₹70</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Paneer Momo</div>
+            <div class="menu-item-desc">Crumbled paneer with herbs and mild spices, crowd favourite</div>
+            <span class="menu-tag tag-veg">Veg</span><span class="menu-tag tag-bestseller">Popular</span>
+          </div>
+          <div class="menu-item-price">₹90</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Cheese Momo</div>
+            <div class="menu-item-desc">Molten cheese centre with a delicate outer fold — indulgent and rich</div>
+            <span class="menu-tag tag-veg">Veg</span>
+          </div>
+          <div class="menu-item-price">₹100</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Buff Momo (Nepali Style)</div>
+            <div class="menu-item-desc">The original — buffalo meat filling, traditional Kathmandu recipe</div>
+            <span class="menu-tag tag-spicy">Spicy</span><span class="menu-tag tag-bestseller">Authentic</span>
+          </div>
+          <div class="menu-item-price">₹100</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Mushroom & Corn Momo</div>
+            <div class="menu-item-desc">Earthy mushrooms with sweet corn in a light, steamed parcel</div>
+            <span class="menu-tag tag-veg">Veg</span>
+          </div>
+          <div class="menu-item-price">₹85</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-fried">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Crispy Fried Chicken Momo</div>
+            <div class="menu-item-desc">Golden-fried momo with a crunchy shell and juicy chicken within</div>
+            <span class="menu-tag tag-bestseller">Bestseller</span>
+          </div>
+          <div class="menu-item-price">₹90</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Chilli Chicken Momo</div>
+            <div class="menu-item-desc">Tossed in fiery chilli sauce with capsicum, onions, and Schezwan kick</div>
+            <span class="menu-tag tag-spicy">Spicy</span><span class="menu-tag tag-bestseller">Hot Pick</span>
+          </div>
+          <div class="menu-item-price">₹100</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Chilli Paneer Momo</div>
+            <div class="menu-item-desc">Pan-tossed with house chilli sauce — crispy, saucy, moreish</div>
+            <span class="menu-tag tag-veg">Veg</span><span class="menu-tag tag-spicy">Spicy</span>
+          </div>
+          <div class="menu-item-price">₹100</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Fried Veg Momo</div>
+            <div class="menu-item-desc">Light fry brings out the filling's flavour — crisp and wholesome</div>
+            <span class="menu-tag tag-veg">Veg</span>
+          </div>
+          <div class="menu-item-price">₹80</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Schezwan Momo</div>
+            <div class="menu-item-desc">Dunked in our bold house Schezwan sauce — intensely flavoured</div>
+            <span class="menu-tag tag-spicy">Very Spicy</span>
+          </div>
+          <div class="menu-item-price">₹95</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Honey Chilli Momo</div>
+            <div class="menu-item-desc">Sweet heat with sesame — a fusion flavour that became a classic here</div>
+            <span class="menu-tag tag-bestseller">Fan Fave</span>
+          </div>
+          <div class="menu-item-price">₹100</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-jhol">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Chicken Jhol Momo</div>
+            <div class="menu-item-desc">Drenched in a tangy, spicy sesame-tomato broth — the Nepali soul food</div>
+            <span class="menu-tag tag-bestseller">Must Try</span><span class="menu-tag tag-spicy">Spicy</span>
+          </div>
+          <div class="menu-item-price">₹110</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Veg Jhol Momo</div>
+            <div class="menu-item-desc">Same iconic broth, veggie filling — warming, hearty, beautiful</div>
+            <span class="menu-tag tag-veg">Veg</span><span class="menu-tag tag-spicy">Spicy</span>
+          </div>
+          <div class="menu-item-price">₹100</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Chicken Tandoori Momo</div>
+            <div class="menu-item-desc">Smoky, charred in our tandoor — bold Himalayan spice marinade</div>
+            <span class="menu-tag tag-bestseller">Chef's Pick</span>
+          </div>
+          <div class="menu-item-price">₹120</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Paneer Tandoori Momo</div>
+            <div class="menu-item-desc">Paneer filling, tandoor-kissed skin with yoghurt & spice crust</div>
+            <span class="menu-tag tag-veg">Veg</span>
+          </div>
+          <div class="menu-item-price">₹120</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Buff Jhol Momo</div>
+            <div class="menu-item-desc">The original Nepali way — buffalo, broth, and pure nostalgia</div>
+            <span class="menu-tag tag-bestseller">Authentic</span>
+          </div>
+          <div class="menu-item-price">₹115</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Mixed Jhol Platter</div>
+            <div class="menu-item-desc">Assorted steamed momos floating in our signature jhol broth — sharing is caring</div>
+            <span class="menu-tag tag-bestseller">For Two</span>
+          </div>
+          <div class="menu-item-price">₹200</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-special">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Chocolate Momo</div>
+            <div class="menu-item-desc">Warm chocolate ganache-filled dessert momo — yes, this exists. Yes, it's magical.</div>
+            <span class="menu-tag tag-veg">Sweet</span><span class="menu-tag tag-bestseller">Unique</span>
+          </div>
+          <div class="menu-item-price">₹100</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Khau Special Thali</div>
+            <div class="menu-item-desc">Steamed, fried, and jhol momos together with soup and two chutneys</div>
+            <span class="menu-tag tag-bestseller">Value Pick</span>
+          </div>
+          <div class="menu-item-price">₹180</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Himalayan Chilli Basket</div>
+            <div class="menu-item-desc">8-piece assorted chilli momos served in a bamboo basket, three dip sauces</div>
+            <span class="menu-tag tag-spicy">Very Spicy</span>
+          </div>
+          <div class="menu-item-price">₹150</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Momo Soup</div>
+            <div class="menu-item-desc">Clear Himalayan broth with floating momos and fresh herbs — soul-warming</div>
+            <span class="menu-tag tag-veg">Light</span>
+          </div>
+          <div class="menu-item-price">₹90</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Party Platter (30 pcs)</div>
+            <div class="menu-item-desc">Mix of your choice — perfect for groups, events, and celebrations</div>
+            <span class="menu-tag tag-bestseller">Party Size</span>
+          </div>
+          <div class="menu-item-price">₹350</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Thukpa Noodle Soup</div>
+            <div class="menu-item-desc">Traditional Tibetan noodle soup with vegetables — hearty and warming</div>
+            <span class="menu-tag tag-veg">Veg Available</span>
+          </div>
+          <div class="menu-item-price">₹110</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+      <p style="font-size: 0.8rem; color: var(--text-muted); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1rem;">All momos served with our signature tomato-sesame achaar chutney & house chilli sauce</p>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="exp-grid">
+      <div class="reveal">
+        <div class="exp-num">4.5<span class="exp-unit">★</span></div>
+        <div class="exp-label">Google Rating</div>
+      </div>
+      <div class="reveal">
+        <div class="exp-num">500<span class="exp-unit">+</span></div>
+        <div class="exp-label">Happy Reviews</div>
+      </div>
+      <div class="reveal">
+        <div class="exp-num">20<span class="exp-unit">+</span></div>
+        <div class="exp-label">Momo Varieties</div>
+      </div>
+      <div class="reveal">
+        <div class="exp-num">∞</div>
+        <div class="exp-label">Memories Made</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">What People Say</span>
+      <h2 class="section-title">Loved by <em>Indore,</em><br>One Momo at a Time</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Absolutely the best momos in Indore. The jhol momo is something else — the broth is deeply flavourful and the momo skins are perfectly thin. I've tried many places, none come close."</p>
+        <div class="review-author">
+          <div class="review-avatar">RK</div>
+          <div>
+            <div class="review-name">Rahul K.</div>
+            <div class="review-date">Bengali Square, Indore</div>
+          </div>
+          <span class="review-platform">Google</span>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The chilli momo is dangerously good. I came once and have been coming back every week. The quantity is generous, prices are very reasonable. The staff is so warm and friendly."</p>
+        <div class="review-author">
+          <div class="review-avatar">PS</div>
+          <div>
+            <div class="review-name">Priya S.</div>
+            <div class="review-date">Indore</div>
+          </div>
+          <span class="review-platform">Google</span>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The chocolate momo blew my mind — who knew dessert momos could be this good? But honestly every item we tried was outstanding. Pure love put into every piece."</p>
+        <div class="review-author">
+          <div class="review-avatar">AM</div>
+          <div>
+            <div class="review-name">Ananya M.</div>
+            <div class="review-date">Indore</div>
+          </div>
+          <span class="review-platform">Google</span>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">"Authentic Nepali taste, exactly like what I had in Kathmandu. The buff momo with achaar is spot on. Great find in Bengali Square. Highly recommend for anyone who loves real momos."</p>
+        <div class="review-author">
+          <div class="review-avatar">VT</div>
+          <div>
+            <div class="review-name">Vikram T.</div>
+            <div class="review-date">Indore</div>
+          </div>
+          <span class="review-platform">Google</span>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Our whole family loves Khau! The kids go crazy for the cheese momos, my husband can't stop at the tandoori chicken. It's become our Sunday ritual and we're not stopping anytime soon."</p>
+        <div class="review-author">
+          <div class="review-avatar">NJ</div>
+          <div>
+            <div class="review-name">Neha J.</div>
+            <div class="review-date">Bengali Square</div>
+          </div>
+          <span class="review-platform">Google</span>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Came here on a friend's recommendation and left completely hooked. The Himalayan chilli basket is a masterpiece. The chutneys are house-made and absolutely divine. This place is a gem."</p>
+        <div class="review-author">
+          <div class="review-avatar">SK</div>
+          <div>
+            <div class="review-name">Sahil K.</div>
+            <div class="review-date">Indore</div>
+          </div>
+          <span class="review-platform">Google</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="photos-strip reveal" style="margin-top: 4rem;">
+      <div class="photo-strip-item">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103551.png?raw=true" alt="Khau momos">
+      </div>
+      <div class="photo-strip-item">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103627.png?raw=true" alt="Khau kitchen">
+      </div>
+      <div class="photo-strip-item">
+        <img src="https://github.com/kisandepo009/khau/blob/main/Screenshot%202026-06-02%20103652.png?raw=true" alt="Khau platter">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Find Us</span>
+      <h2 class="section-title">Come for the <em>Momos,</em><br>Stay for the Vibe</h2>
+    </div>
+    <div class="location-grid">
+      <div class="reveal">
+        <div class="location-info-item">
+          <div class="loc-icon">📍</div>
+          <div>
+            <div class="loc-title">Address</div>
+            <div class="loc-text">Bengali Square, Indore<br>Madhya Pradesh, India<br><a href="https://maps.app.goo.gl/q4nLEqUGPKxM8pYx8" target="_blank">Open in Google Maps →</a></div>
+          </div>
+        </div>
+        <div class="location-info-item">
+          <div class="loc-icon">🕐</div>
+          <div>
+            <div class="loc-title">Hours</div>
+            <div class="loc-text">
+              Mon – Fri: 11:00 AM – 10:30 PM<br>
+              Sat – Sun: 10:00 AM – 11:00 PM<br>
+              <span style="color: var(--gold); font-size: 0.8rem;">Open Today</span>
+            </div>
+          </div>
+        </div>
+        <div class="location-info-item">
+          <div class="loc-icon">📞</div>
+          <div>
+            <div class="loc-title">Contact</div>
+            <div class="loc-text">Call or WhatsApp us for<br>bulk orders & catering<br><a href="tel:">Available on Google Maps</a></div>
+          </div>
+        </div>
+        <div class="location-info-item">
+          <div class="loc-icon">🅿️</div>
+          <div>
+            <div class="loc-title">Parking & Access</div>
+            <div class="loc-text">Street parking available<br>Accessible via auto-rickshaw & cab<br>Near Bengali Square market</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-embed reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.5!2d75.9039073!3d22.7148494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962e300560479c3%3A0xf7921b641af2b2bd!2sKhau%20Nepali%20Momos!5e0!3m2!1sen!2sin!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+          <a href="https://maps.app.goo.gl/q4nLEqUGPKxM8pYx8" target="_blank" class="btn-primary" style="flex: 1; text-align: center; font-size: 0.75rem;">Get Directions</a>
+          <a href="https://maps.app.goo.gl/q4nLEqUGPKxM8pYx8" target="_blank" class="btn-outline" style="flex: 1; text-align: center; font-size: 0.75rem;">View on Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Khau<br>Nepali Momos</div>
+        <div class="footer-tagline">Bengali Square · Indore · Since Ever</div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 1rem; max-width: 260px; line-height: 1.7; font-weight: 300;">Authentic Himalayan momos, hand-folded with love and served with fire.</p>
+      </div>
+      <div class="footer-links-group">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#menu">Steamed Momos</a></li>
+          <li><a href="#menu">Fried & Chilli</a></li>
+          <li><a href="#menu">Jhol Momos</a></li>
+          <li><a href="#menu">Tandoori</a></li>
+          <li><a href="#menu">Specials</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-group">
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#location">Our Location</a></li>
+          <li><a href="#location">Opening Hours</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="https://maps.app.goo.gl/q4nLEqUGPKxM8pYx8" target="_blank">Google Maps</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-group">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://maps.app.goo.gl/q4nLEqUGPKxM8pYx8" target="_blank">Find on Maps</a></li>
+          <li><a href="#location">Bulk Orders</a></li>
+          <li><a href="#location">Catering</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Khau Nepali Momos. Bengali Square, Indore. All rights reserved.</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/p/C6x4PIvRX9i/" target="_blank" class="social-link" title="Instagram">IG</a>
+        <a href="https://maps.app.goo.gl/q4nLEqUGPKxM8pYx8" target="_blank" class="social-link" title="Google Maps">GM</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top = mouseY + 'px';
+  });
+  function animateCursor() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.6)'; ring.style.opacity = '0.9'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '0.6'; });
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Menu tabs
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+</script>
+</body>
+</html>
